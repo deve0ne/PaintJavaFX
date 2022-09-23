@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ColorPicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.deveone.mypaint.PaintController">
+   <top>
+      <VBox BorderPane.alignment="CENTER">
+         <children>
+            <MenuBar>
+              <menus>
+                <Menu mnemonicParsing="false" text="File">
+                  <items>
+                    <MenuItem disable="true" mnemonicParsing="false" onAction="#onSave" text="Save" />
+                        <MenuItem disable="true" mnemonicParsing="false" text="Load" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Edit">
+                  <items>
+                    <MenuItem disable="true" mnemonicParsing="false" text="Clear canvas" />
+                  </items>
+                </Menu>
+              </menus>
+            </MenuBar>
+            <ToolBar>
+              <items>
+                  <HBox spacing="5.0" />
+                  <VBox>
+                     <children>
+                        <HBox>
+                           <children>
+                              <Spinner fx:id="brushSize" editable="true" prefHeight="25.0" prefWidth="70.0" />
+                              <Label maxHeight="1.7976931348623157E308" text="Размер кисти">
+                                 <HBox.margin>
+                                    <Insets left="4.0" />
+                                 </HBox.margin>
+                              </Label>
+                           </children>
+                           <VBox.margin>
+                              <Insets bottom="10.0" top="2.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <ColorPicker fx:id="colorPicker" editable="true" maxWidth="1.7976931348623157E308">
+                           <value>
+                              <Color />
+                           </value>
+                        </ColorPicker>
+                     </children>
+                  </VBox>
+                  <Separator orientation="VERTICAL">
+                     <padding>
+                        <Insets left="5.0" right="5.0" />
+                     </padding>
+                  </Separator>
+                  <VBox alignment="CENTER_LEFT">
+                     <children>
+                        <ToggleButton fx:id="paintTool" alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onToolChanged" selected="true" text="Кисть" wrapText="true">
+                           <graphic>
+                              <ImageView fitHeight="150.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../graphics/tools/icons8-illustrator-96.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <VBox.margin>
+                              <Insets bottom="2.0" />
+                           </VBox.margin>
+                           <toggleGroup>
+                              <ToggleGroup fx:id="Tools" />
+                           </toggleGroup>
+                        </ToggleButton>
+                        <ToggleButton fx:id="eraserTool" alignment="CENTER_LEFT" mnemonicParsing="false" onAction="#onToolChanged" text="Ластик" toggleGroup="$Tools" wrapText="true">
+                           <graphic>
+                              <ImageView fitHeight="150.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../graphics/tools/icons8-erase-96.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </ToggleButton>
+                     </children>
+                  </VBox>
+                  <Separator orientation="VERTICAL">
+                     <padding>
+                        <Insets left="5.0" right="5.0" />
+                     </padding>
+                  </Separator>
+                  <GridPane hgap="2.0" vgap="2.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <ToggleButton fx:id="lineTool" mnemonicParsing="false" onAction="#onToolChanged" toggleGroup="$Tools">
+                           <graphic>
+                              <ImageView fitHeight="150.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../graphics/forms/icons8-line-96.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </ToggleButton>
+                        <ToggleButton fx:id="triangleTool" disable="true" mnemonicParsing="false" onAction="#onToolChanged" toggleGroup="$Tools" GridPane.rowIndex="1">
+                           <graphic>
+                              <ImageView fitHeight="150.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../graphics/forms/icons8-triangle-96.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </ToggleButton>
+                        <ToggleButton fx:id="rectangleTool" mnemonicParsing="false" onAction="#onToolChanged" toggleGroup="$Tools" GridPane.columnIndex="1">
+                           <graphic>
+                              <ImageView fitHeight="150.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../graphics/forms/icons8-rectangular-96.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </ToggleButton>
+                        <ToggleButton fx:id="rhombusTool" disable="true" mnemonicParsing="false" onAction="#onToolChanged" toggleGroup="$Tools" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <graphic>
+                              <ImageView fitHeight="150.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../graphics/forms/icons8-rhombus-96.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </ToggleButton>
+                        <ToggleButton fx:id="ovalTool" disable="true" mnemonicParsing="false" onAction="#onToolChanged" toggleGroup="$Tools" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                           <graphic>
+                              <ImageView fitHeight="150.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../graphics/forms/icons8-oval-96.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </ToggleButton>
+                        <ToggleButton fx:id="citcleTool" disable="true" mnemonicParsing="false" onAction="#onToolChanged" toggleGroup="$Tools" GridPane.columnIndex="2">
+                           <graphic>
+                              <ImageView fitHeight="150.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../graphics/forms/icons8-circle-96.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </ToggleButton>
+                     </children>
+                  </GridPane>
+                  <Separator orientation="VERTICAL">
+                     <padding>
+                        <Insets left="5.0" right="5.0" />
+                     </padding>
+                  </Separator>
+              </items>
+            </ToolBar>
+         </children>
+      </VBox>
+   </top>
+   <bottom>
+      <ToolBar maxWidth="1.7976931348623157E308" orientation="VERTICAL" BorderPane.alignment="BOTTOM_CENTER">
+        <items>
+            <HBox alignment="CENTER" disable="true" fillHeight="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+               <children>
+                  <Button maxHeight="1.7976931348623157E308" mnemonicParsing="false" HBox.hgrow="ALWAYS">
+                     <graphic>
+                        <ImageView fitHeight="150.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../graphics/media/icons8-skip-to-start-96.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <ToggleButton fx:id="playButton" mnemonicParsing="false">
+                     <graphic>
+                        <ImageView fitHeight="150.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../graphics/media/icons8-play-96.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </ToggleButton>
+                  <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false">
+                     <graphic>
+                        <ImageView fitHeight="150.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../graphics/media/icons8-end-96.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+            </HBox>
+            <Slider majorTickUnit="1.0" max="10.0" maxWidth="1.7976931348623157E308" min="1.0" minorTickCount="0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="1.0" />
+        </items>
+      </ToolBar>
+   </bottom>
+   <center>
+      <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" vbarPolicy="NEVER">
+         <content>
+            <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <Canvas fx:id="canvas" height="250.0" layoutX="68.0" layoutY="14.0" width="500.0" />
+               </children>
+            </AnchorPane>
+         </content>
+      </ScrollPane>
+   </center>
+</BorderPane>
